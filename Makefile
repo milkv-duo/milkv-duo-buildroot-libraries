@@ -31,6 +31,10 @@ ifeq (${CROSS_COMPILE},)
 $(error CROSS_COMPILE is undefined)
 endif
 
+ifeq (${FREE_RAM_SIZE},)
+$(error FREE_RAM_SIZE is undefined)
+endif
+
 ################################################################################
 # Default values for build configurations, and their dependencies
 ################################################################################
@@ -163,6 +167,12 @@ ifeq (${BOOT_CPU},riscv)
 $(eval $(call add_define_val,TOC_HEADER_NAME,0xC906B001))
 else
 $(eval $(call add_define_val,TOC_HEADER_NAME,0xAA640001))
+endif
+
+ifeq (${FREE_RAM_SIZE},64MB)
+$(eval $(call add_define_val,CVI_BUILDROOT_64MB,1))
+else
+$(eval $(call add_define_val,CVI_BUILDROOT_ION,1))
 endif
 
 ifeq (${RTOS_ENABLE_FREERTOS},y)
