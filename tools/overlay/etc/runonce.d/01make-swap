@@ -1,6 +1,0 @@
-#!/bin/sh
-
-#
-# Set up swap area
-#
-mkswap /dev/mmcblk0p3
