@@ -1,0 +1,27 @@
+#!/bin/sh
+${CVI_SHOPTS}
+
+#
+# Start firmware
+#
+export SYSTEMPATH=/opt/milkv-duo/
+
+case "$1" in
+  start)
+
+        echo "Starting app..."
+
+        if [ -f $SYSTEMPATH/blink.sh ]; then
+                . $SYSTEMPATH/blink.sh &
+        fi
+        ;;
+  stop)
+        ;;
+  restart|reload)
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

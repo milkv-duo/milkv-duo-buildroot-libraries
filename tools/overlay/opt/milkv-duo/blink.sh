@@ -3,10 +3,12 @@
 CONFIG=/etc/milkv-duo.conf
 source ${CONFIG}
 
+LED_PATH=/sys/class/gpio/gpio${BLINK_LED_GPIO}
+
 if test -d ${LED_PATH}; then
-    echo "GPIO${LED_GPIO} already exported"
+    echo "GPIO${BLINK_LED_GPIO} already exported"
 else
-    ${DUO_WRITE} ${LED_GPIO} >/sys/class/gpio/export
+    ${DUO_WRITE} ${BLINK_LED_GPIO} >/sys/class/gpio/export
 fi
 
 ${DUO_WRITE} out >${LED_PATH}/direction

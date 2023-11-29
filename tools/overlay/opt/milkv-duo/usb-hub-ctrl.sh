@@ -1,6 +1,9 @@
 CONFIG=/etc/milkv-duo.conf
 source ${CONFIG}
 
+USB_CONFIG=/etc/milkv-duo-usb.conf
+source ${USB_CONFIG}
+
 hub_on() {
   echo "turn on usb hub"
   if [ ! -d $SYS_GPIO/gpio$GPIO_HUBPORT_EN ]; then

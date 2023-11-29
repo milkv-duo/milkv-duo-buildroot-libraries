@@ -1,0 +1,32 @@
+#!/bin/sh
+
+#
+# Execute scripts, that are intended to run only once
+#
+case "$1" in
+  start)
+
+        for file in /etc/runonce.d/*
+        do
+                if [ ! -f "$file" ]
+                then
+                        continue
+                fi
+                
+                if "$file" >> /tmp/runonce.log 2>&1
+                then
+                        mv "$file" "/etc/runonce.d/ran/"
+                        sync
+                fi
+        done
+        ;;
+  stop)
+        ;;
+  restart|reload)
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

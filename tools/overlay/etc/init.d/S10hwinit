@@ -1,0 +1,44 @@
+#!/bin/sh
+
+#
+# Initialize hardware
+#
+export SYSTEMPATH=/opt/milkv-duo/
+CONFIG=/etc/milkv-duo.conf
+source ${CONFIG}
+
+case "$1" in
+  start)
+        
+        if [ -f $SYSTEMPATH/duo-init.sh ]; then
+                . $SYSTEMPATH/duo-init.sh &
+        fi
+
+        if [ ! -z $ETH0_MAC_ADDR ]; then
+                ifconfig eth0 hw ether ${ETH0_MAC_ADDR}
+        fi
+
+        if [ "$DUO_USB_FUNC" == "RNDIS" ]; then
+                if [ -f $SYSTEMPATH/usb-rndis.sh ]; then
+                        . $SYSTEMPATH/usb-rndis.sh &
+                fi
+        elif [ "$DUO_USB_FUNC" == "HOST" ]; then
+                if [ -f $SYSTEMPATH/usb-host.sh ]; then
+                        . $SYSTEMPATH/usb-host.sh &
+                fi
+        elif [ "$DUO_USB_FUNC" == "MASS-STORAGE" ]; then
+                if [ -f $SYSTEMPATH/usb-mass-storage.sh ]; then
+                        . $SYSTEMPATH/usb-mass-storage.sh &
+                fi
+        fi
+        ;;
+  stop)
+        ;;
+  restart|reload)
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

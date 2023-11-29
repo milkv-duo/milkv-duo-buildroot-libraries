@@ -1,4 +1,3 @@
-*.d
 fip.bin
 build_message.o
 blmacros.dis

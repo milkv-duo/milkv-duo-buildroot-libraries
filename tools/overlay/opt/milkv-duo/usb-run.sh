@@ -1,6 +1,9 @@
 CONFIG=/etc/milkv-duo.conf
 source ${CONFIG}
 
+USB_CONFIG=/etc/milkv-duo-usb.conf
+source ${USB_CONFIG}
+
 case "$2" in
   acm)
 	CLASS=acm

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#
+# Store first boot eth0 MAC address to make it persistent
+#
+CONFIG=/etc/milkv-duo.conf
+source ${CONFIG}
+
+if [ -z $ETH0_MAC_ADDR ]; then
+        echo -e "\n# stored at first boot" >> ${CONFIG}
+        echo "ETH0_MAC_ADDR=$(cat /sys/class/net/eth0/address)" >> ${CONFIG}
+fi
