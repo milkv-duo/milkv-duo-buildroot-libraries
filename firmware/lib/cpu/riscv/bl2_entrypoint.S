@@ -2,10 +2,6 @@
 #include "csr.h"
 #include <riscv/asm_macros.S>
 
-#define mxstatus 0x7c0
-#define mhcr 0x7c1
-#define mcor 0x7c2
-
   .option norvc
   .section .text.init,"ax",@progbits
   .globl bl2_entrypoint
