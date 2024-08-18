@@ -46,7 +46,7 @@ INCLUDES += \
 	${STDLIB_INCLUDES} \
 	${CRYPT_INCLUDES}
 
-#BL_COMMON_SOURCES = \
+BL_COMMON_SOURCES = \
 	${CPU_SOURCES} \
 	lib/tf_printf/tf_printf.c \
 	plat/${CHIP_ARCH}/platform.c \
@@ -54,12 +54,12 @@ INCLUDES += \
 	${STDLIB_SRCS} \
 	${CRYPT_SOURCES}
 
-#DECOMPRESSION_SOURCES = \
+DECOMPRESSION_SOURCES = \
 	lib/lzma/LzmaDec.c \
 	lib/lz4/lz4_all.c \
 	lib/lz4/xxhash.c
 
-#BL2_SRCS = \
+BL2_SRCS = \
 	${BL_COMMON_SOURCES} \
 	plat/${CHIP_ARCH}/bl2/bl2_opt.c \
 	lib/utils/decompress.c \
@@ -70,7 +70,7 @@ BL2_SOURCES = \
 	${BL2_SRCS} \
 	plat/${CHIP_ARCH}/bl2/bl2_main.c
 
-#include plat/${CHIP_ARCH}/ddr/ddr.mk
+include plat/${CHIP_ARCH}/ddr/ddr.mk
 
 BL2_LINKERFILE := plat/${CHIP_ARCH}/bl2/bl2.ld.S
-BL2_RLS_OBJS := plat/${CHIP_ARCH}/bl2_objs/${PROJECT_FULLNAME}/bl2/*.o
+#BL2_RLS_OBJS := plat/${CHIP_ARCH}/bl2_objs/${PROJECT_FULLNAME}/bl2/*.o
